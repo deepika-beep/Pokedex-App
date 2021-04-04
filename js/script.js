@@ -1,3 +1,3 @@
-alert('hello world');
-let myFavoriteFood="Pizza";
-document.write(myFavoriteFood);
+// This array contains Pokémon data to display in your application.
+
+let pokemonList=[];
