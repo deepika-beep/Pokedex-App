@@ -1,4 +1,4 @@
-// This array contains Pokémon data to display in your application.
+  // This array contains Pokémon data to display in your application.
 // Created a new pokemonRepository variable to hold what the  IIFE will return.
 let  pokemonRepository =(function(){
 let pokemonList=[{name:'Bulbasaur',height:'7',types:['grass', 'poison']},
@@ -8,37 +8,47 @@ let pokemonList=[{name:'Bulbasaur',height:'7',types:['grass', 'poison']},
 function getAll(){
   return pokemonList;
 }
+
+
+// created add function to check if the typeof parameter is an object
 function add(item){
+if(typeof item==='object'){
 pokemonList.push(item);
+}
+else{
+  prompt("data invalid");
+}
+};
+
+function addListItem(pokemon){
+  let pokemonList=document.querySelector('.pokemon-list');
+  let listItem=document.createElement('li');
+  let button=document.createElement('button');
+  button.addEventListener('click',function showDetails(pokemon){
+console.log(pokemon);
+});
+  button.innerText=pokemon.name;
+  button.classList.add('my-button');
+
+  // appended the button to li
+  listItem.appendChild(button);
+  // appended the button to ul
+  pokemonList.appendChild(listItem);
+}
+function showDetails(pokemon){
+  console.log(pokemon);
 }
 return{
   getAll:getAll,
-  add:add
+  add:add,
+  addListItem:addListItem
 };
 })();
 
 pokemonRepository.add({name:'Charizard',types:['fire','flying']});
 console.log(pokemonRepository.getAll());
-// display the Pokémon name and height on  website’s DOM
-
-// Added The conditional to check if the height is above a certain value to print the following output
-// for(i=0;i<pokemonList.length;i++)
-// {
-// if(pokemonList[i].height>3)
-// {
-//
-//   document.write(pokemonList[i].name + "(" + " height: "  + pokemonList[i].height + ")" + " Wow, that’s big!" + "<br>");
-// }
-// else if(pokemonList[i].height==3)
-// {
-//   document.write(pokemonList[i].name + "(" + " height: " + pokemonList[i].height + ")"+ " that’s average!" + "<br>");
-// }
-// else{
-// document.write(pokemonList[i].name + "(" +" height: " + pokemonList[i].height + ")" +" that’s small!" + "<br>");
-// }
-// }
-
 // Used a forEach() function instead of the for loop to iterate over the Pokémon in pokemonList array to print the details of each one.
-pokemonRepository.getAll().forEach(function(item){
-  document.write('name:'+ item.name + ' height:' + item.height +' types:'+ item.types + "</br>");
+pokemonRepository.getAll().forEach(function(pokemon){
+  // document.write('name:'+ item.name + ' height:' + item.height +' types:'+ item.types + "</br>");
+pokemonRepository.addListItem(pokemon);
  });
