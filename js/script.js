@@ -60,13 +60,14 @@ let  pokemonRepository =(function(){
   function loadDetails(item){
     // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url=item.detailsUrl;
-    return fetch(url).then(function(){
+    return fetch(url).then(function(response){
       return response.json();
       // Everything in json are considered as details
     }).then(function(details){
       item.height=details.height;
       item.types=details.types;
       item.imgUrl=details.sprites.front_shiny;
+      // return item;
     }).catch(function(e)
   {
     console.error(e);
