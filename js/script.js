@@ -40,6 +40,7 @@ let  pokemonRepository =(function(){
   }
 
   function loadList(){
+      showLoadMessage()
     return fetch(apiUrl).then(function(response){
       return response.json();
     }).then(function(json){
@@ -55,9 +56,11 @@ let  pokemonRepository =(function(){
     }).catch(function(e){
       console.error(e);
     })
+
   }
 
   function loadDetails(item){
+      showLoadMessage()
     // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url=item.detailsUrl;
     return fetch(url).then(function(response){
@@ -78,13 +81,51 @@ let  pokemonRepository =(function(){
       console.log(response);
     });
   }
+
+// Bonus Task
+let textInput=document.querySelector('#inputArea');
+let textOutput=document.querySelector('#showOutput');
+let btn=document.querySelector('#SubmitMessage');
+
+// add addEventListener to button
+btn.addEventListener('click',fetchHandler);
+// selecting loading div
+let loader=document.querySelector('#loading');
+
+  // show Loading
+
+  function showLoadMessage(){
+loader.classList.add('display');
+
+// stop loading aftersometime
+setTimeout(function(){
+  loader.classList.remove('display');
+},5000);
+      }
+
+function hideLoadingMessage(){
+loader.classList.remove('display');
+}
+
+function fetchHandler(event){
+  showLoadMessage()
+  let input=textInput.value;
+ fetch(apiUrl).then(function(response){
+    return response.json();
+  }).then(function(json){
+      hideLoadingMessage()
+      textOutput.innerText="Output is entered";
+}
+
   return{
     add:add,
     getAll:getAll,
     addListItem:addListItem,
     loadList:loadList,
     loadDetails:loadDetails,
-    showDetails:showDetails
+    showDetails:showDetails,
+    showLoadMessage;showLoadMessage,
+    hideLoadingMessage:hideLoadingMessage
   };
 })();
 
