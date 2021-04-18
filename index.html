@@ -1,27 +1,35 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pokedex App</title>
-<link rel="shortcut icon" href="img/favicon.ico">
-<link rel="stylesheet" href="css/styles.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokedex App</title>
+  <link rel="shortcut icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <header class="page-header">
 
-      <!-- add a logo here -->
-      <img src="img/pokemon.jpg" alt="logo" class="page-header__item">
-      </header>
-      <h3>Pokedex</h3>
-    <ul role="list" class="pokemon-list">
+    <!-- add a logo here -->
+    <img src="img/pokemon.jpg" alt="logo" class="page-header__item">
+  </header>
+  <h3>Pokedex</h3>
+  <ul role="list" class="pokemon-list">
     <li> </li>
 
-    </ul>
+  </ul>
 
+  <!-- Input area -->
+  <div class="container">
+    <textarea id="inputArea" placeholder="enter the message"></textarea>
+    <!-- Submit message -->
+    <button id="SubmitMessage"></button>
+  <div id="loading"></div>
+  <h1 id="showOutput"></h1>
+</div>
 <br>
 <script src="js/promise-polyfill.js"></script>
 <script src="js/fetch-polyfill.js"></script>
-  <script src="js/script.js"> </script>
+<script src="js/script.js"> </script>
 </body>
 </html>
