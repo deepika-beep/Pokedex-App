@@ -67,15 +67,15 @@ let  pokemonRepository =(function(){
       item.height=details.height;
       item.types=details.types;
       item.imgUrl=details.sprites.front_shiny;
-      // return item;
+      return item;
     }).catch(function(e)
   {
     console.error(e);
   })
   }
   function showDetails(pokemon){
-    pokemonRepository.loadDetails(pokemon).then(function(){
-      console.log(pokemon);
+    pokemonRepository.loadDetails(pokemon).then(function(response){
+      console.log(response);
     });
   }
   return{
@@ -88,7 +88,7 @@ let  pokemonRepository =(function(){
   };
 })();
 
-pokemonRepository.add({name:'Charizard',types:['fire','flying']});
+
 console.log(pokemonRepository.getAll());
 pokemonRepository.loadList().then(function(){
   // Used a forEach() function instead of the for loop to iterate over the Pokémon in pokemonList array to print the details of each one.
