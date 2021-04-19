@@ -48,7 +48,9 @@ let  pokemonRepository =(function(){
         let pokemon={
           name:item.name,
           detailsUrl:item.url
-        };
+        }).then(function(hideLoadingMessage){
+      return response.json();
+        });
         // function add(item)
         add(pokemon);
         console.log(pokemon);
@@ -71,7 +73,9 @@ let  pokemonRepository =(function(){
       item.types=details.types;
       item.imgUrl=details.sprites.front_shiny;
       return item;
-    }).catch(function(e)
+    }).then(function(hideLoadingMessage(){
+
+    })catch(function(e)
   {
     console.error(e);
   })
