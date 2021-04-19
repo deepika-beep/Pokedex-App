@@ -27,7 +27,7 @@ display: inline-block;
 font-size: 15px;
 cursor:pointer;
 }
-#loading{
+/* #loading{
   height:2rem;
   width:2rem;
   border: 4px solid #42d4f5;
@@ -47,4 +47,4 @@ cursor:pointer;
   to{
     transform:rotate(360deg);
   }
-}
+} */
