@@ -30,17 +30,17 @@ let  pokemonRepository =(function(){
 
     button.innerText=pokemon.name;
     button.classList.add('my-button');
-    button.addEventListener('click',function(event){
-      showDetails(pokemon);
-    });
     // appended the button to li
     listItem.appendChild(button);
     // appended the button to ul
     pokemonList.appendChild(listItem);
+    button.addEventListener('click',function(event){
+      showDetails(pokemon);
+    });
+
   }
 
   function loadList(){
-      showLoadMessage()
     return fetch(apiUrl).then(function(response){
       return response.json();
     }).then(function(json){
@@ -48,9 +48,7 @@ let  pokemonRepository =(function(){
         let pokemon={
           name:item.name,
           detailsUrl:item.url
-        }).then(function(hideLoadingMessage){
-      return response.json();
-        });
+        };
         // function add(item)
         add(pokemon);
         console.log(pokemon);
@@ -62,7 +60,7 @@ let  pokemonRepository =(function(){
   }
 
   function loadDetails(item){
-      showLoadMessage()
+
     // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url=item.detailsUrl;
     return fetch(url).then(function(response){
@@ -73,12 +71,10 @@ let  pokemonRepository =(function(){
       item.types=details.types;
       item.imgUrl=details.sprites.front_shiny;
       return item;
-    }).then(function(hideLoadingMessage(){
-
-    })catch(function(e)
+    }).catch(function(e)
   {
     console.error(e);
-  })
+  });
   }
   function showDetails(pokemon){
     pokemonRepository.loadDetails(pokemon).then(function(response){
@@ -86,40 +82,6 @@ let  pokemonRepository =(function(){
     });
   }
 
-// Bonus Task
-let textInput=document.querySelector('#inputArea');
-let textOutput=document.querySelector('#showOutput');
-let btn=document.querySelector('#SubmitMessage');
-
-// add addEventListener to button
-btn.addEventListener('click',fetchHandler);
-// selecting loading div
-let loader=document.querySelector('#loading');
-
-  // show Loading
-
-  function showLoadMessage(){
-loader.classList.add('display');
-
-// stop loading aftersometime
-setTimeout(function(){
-  loader.classList.remove('display');
-},5000);
-      }
-
-function hideLoadingMessage(){
-loader.classList.remove('display');
-}
-
-function fetchHandler(event){
-  showLoadMessage()
-  let input=textInput.value;
- fetch(apiUrl).then(function(response){
-    return response.json();
-  }).then(function(json){
-      hideLoadingMessage()
-      textOutput.innerText="Output is entered";
-}
 
   return{
     add:add,
@@ -127,14 +89,12 @@ function fetchHandler(event){
     addListItem:addListItem,
     loadList:loadList,
     loadDetails:loadDetails,
-    showDetails:showDetails,
-    showLoadMessage;showLoadMessage,
-    hideLoadingMessage:hideLoadingMessage
-  };
+    showDetails:showDetails
+};
 })();
 
 
-console.log(pokemonRepository.getAll());
+// console.log(pokemonRepository.getAll());
 pokemonRepository.loadList().then(function(){
   // Used a forEach() function instead of the for loop to iterate over the Pokémon in pokemonList array to print the details of each one.
   pokemonRepository.getAll().forEach(function(pokemon){
