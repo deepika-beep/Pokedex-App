@@ -4,7 +4,7 @@
 
 body{
   font-family: 'Roboto Slab', serif;
-  font-weight: 300;
+  
   font-size: 20px;
 }
 .pokemon-list li{
@@ -27,24 +27,46 @@ display: inline-block;
 font-size: 15px;
 cursor:pointer;
 }
-/* #loading{
-  height:2rem;
-  width:2rem;
-  border: 4px solid #42d4f5;
-  border-radius: 100%;
-  visibility: hidden;
-  margin:auto;
-  animation: spin 1s infinite linear;
+#modal-container{
+  display:none;
 }
-#loading.display{
-  visibility: visible;
-}
+#modal-container.is-visible{
+  display: block;
+  position: fixed;
+  padding: 20px;
+  box-sizing:border-box;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:  rgba(0, 0, 0, 0.5);
+  display: grid;
+  text-align: center;
+  /* * to show it above other content */
+  z-index: 999;
 
-@keyframes spin{
-  from{
-    transform:rotate(0deg);
-  }
-  to{
-    transform:rotate(360deg);
-  }
-} */
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+}
+.modal{
+  display: inline-block;
+  margin: auto;
+  box-sizing: border-box;
+  background: #fff;
+  width:100%;
+  padding: 20px;
+  max-width:700px;
+text-align: center;
+}
+.modal-close{
+  float: right;
+  border:0;
+  background: none;
+  color:red;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.img-element{
+  height:100px;
+  width: 100px;
+}
