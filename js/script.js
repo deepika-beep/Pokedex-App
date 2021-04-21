@@ -105,14 +105,14 @@ function showModal(pokemon){
 
   let imgElement=document.createElement('img');
   imgElement.classList.add('img-element');
-  imgElement.src=pokemon.imageUrl;
+  imgElement.src=pokemon.imgUrl;
 
-  modal.appendChild('closeButtonElement');
-  modal.appendChild('nameElement');
-  modal.appendChild('heightElement');
-  modal.appendChild('img-element');
-  modalContainer.appendChild('modal');
-  modalContainer.classList.add('is-visible');
+  modal.appendChild(closeButtonElement);
+  modal.appendChild(nameElement);
+  modal.appendChild(heightElement);
+  modal.appendChild(img-element);
+  modalContainer.appendChild(modal);
+  modalContainer.classList.add(is-visible);
 
 }
 // hideModal function
