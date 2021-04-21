@@ -1,6 +1,8 @@
 // This array contains Pokémon data to display in your application.
 // Created a new pokemonRepository variable to hold what the  IIFE will return.
 let  pokemonRepository =(function(){
+  let modalContainer = document.querySelector('#modal-container');
+
   let pokemonList=[
 
   ];
@@ -78,10 +80,66 @@ let  pokemonRepository =(function(){
   }
   function showDetails(pokemon){
     pokemonRepository.loadDetails(pokemon).then(function(response){
-      console.log(response);
+    showModal(pokemon);
     });
   }
 
+// Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
+function showModal(pokemon){
+// addListItem(pokemon);
+  // clear existing modal content
+  modalContainer.innerHTML='';
+  let modal=document.createElement('div');
+  modal.classList.add('modal');
+  // add new modal content
+  let closeButtonElement=document.createElement('button');
+  closeButtonElement.classList.add('modal-close');
+  closeButtonElement.innerText='Close';
+  closeButtonElement.addEventListener('click',hideModal);
+
+  let nameElement=document.createElement('h3');
+  nameElement.innerText=pokemon.name;
+
+  let heightElement=document.createElement('h3');
+  heightElement.innerText=pokemon.height;
+
+  let imgElement=document.createElement('img');
+  imgElement.classList.add('img-element');
+  imgElement.src=pokemon.imageUrl;
+
+  modal.appendChild('closeButtonElement');
+  modal.appendChild('nameElement');
+  modal.appendChild('heightElement');
+  modal.appendChild('img-element');
+  modalContainer.appendChild('modal');
+  modalContainer.classList.add('is-visible');
+
+}
+// hideModal function
+
+function hideModal(){
+
+  modalContainer.classList.remove('is-visible');
+}
+
+document.querySelector('#show-modal').addEventListener('click',()=>{
+  showModal(pokemon);
+});
+
+// Close the modal via Esc key
+window.addEventListener('keydown',(e)=>{
+
+  if(e.key==='Escape'&&  modalContainer.classList.contains('is-visible')){
+    hideModal();
+  }
+});
+
+// Close the modal when clicking the overlay
+modalContainer.addEventListener('click',(e)=>{
+  if(e.target=modalContainer){
+    hideModal();
+  }
+});
 
   return{
     add:add,
@@ -89,7 +147,10 @@ let  pokemonRepository =(function(){
     addListItem:addListItem,
     loadList:loadList,
     loadDetails:loadDetails,
-    showDetails:showDetails
+    showDetails:showDetails,
+    showModal:showModal,
+    hideModal:hideModal
+
 };
 })();
 
