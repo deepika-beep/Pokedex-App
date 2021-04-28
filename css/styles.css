@@ -1,5 +1,19 @@
-body{
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
+:root{
+  --bg-color:#f4f7fd;
+  --color:#9ac12e;
+  --h5-color:#fff;
+  --font:'Noto Sans JP', sans-serif;
+  --button-color:#007fff;
+  --border-color:#c6efdc;
+}
 
+body{
+background-color:  var(--bg-color);
+color:  var(--color);
+line-height: 1.5;
+text-align:center;
+margin: auto;
   }
 
   ul{
@@ -15,4 +29,8 @@ body{
   width:100%;
   cursor: pointer;
   display: inline-block;
+  transition: 0.2s opacity;
+  color:var(--color);
+  background-color:  var(--button-color);
+  border-color: var(--border-color);
 }
