@@ -26,12 +26,19 @@ let  pokemonRepository = (function(){
   }
 
   function addListItem(pokemon){
-    let pokemonList = document.querySelector('.pokemon-list');
+    let pokemonList = document.querySelector('.list-group');
     let listItem = document.createElement('li');
+
+// Added list-group-item on li elements
+    listItem.addClass('list-group-item');
     let button = document.createElement('button');
 
+// added button utility class
+
     button.innerText=pokemon.name;
-    button.classList.add('my-button');
+    button.classList.add('btn btn-primary');
+    button.setAttribute('data-bs-target','#pokemonModal','data-bs-toggle','modal');
+
     // appended the button to li
     listItem.appendChild(button);
     // appended the button to ul
@@ -86,60 +93,59 @@ let  pokemonRepository = (function(){
 
 // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
 function showModal(pokemon){
+  let modalTitle = $('.modal-title');
+  let modalHeader=$('.modal-header');
+  let modalBody = $('.modal-body');
 
-  // clear existing modal content
-  modalContainer.innerHTML = '';
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
-  // add new modal content
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal-close');
-  closeButtonElement.innerText = 'Close';
-  closeButtonElement.addEventListener('click',hideModal);
+  // clear the existing content of the modal
+  modalBody.empty();
+  modalTitle.empty();
 
-  let nameElement = document.createElement('h3');
-  nameElement.innerText=pokemon.name;
+// create element for name in modal content
+  let nameElement = $("<h1>" + pokemon.name + "</h1>")
+// create element for height in modal content
 
-  let heightElement = document.createElement('h3');
-  heightElement.innerText=pokemon.height;
+  let heightElement = $("<p>" + "height :" + pokemon.height + "</p>");
 
-  let imgElement = document.createElement('img');
-  imgElement.classList.add('img-element');
-  imgElement.src=pokemon.imgUrl;
+// create element for img in modal content
+  let imgElement = $('<img class="modal-img" style="width:50%">');
+  imgElement.attr('src',pokemon.imageUrl);
+// create element for types in modal content
+  let typeElement=$("<p>" + "types :" + pokemon.types +"</p>");
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(nameElement);
-  modal.appendChild(heightElement);
-  modal.appendChild(imgElement);
-  modalContainer.appendChild(modal);
-  modalContainer.classList.add('is-visible');
+
+  modalTitle.append(nameElement);
+  modalBody.append(heightElement);
+  modalBody.append(imgElement);
+  modalBody.append(typeElement);
+
 
 }
 // hideModal function
-
-function hideModal(){
-
-  modalContainer.classList.remove('is-visible');
-}
-
-document.querySelector('#show-modal').addEventListener('click',() =>{
-  showModal(pokemon);
-});
-
-// Close the modal via Esc key
-window.addEventListener('keydown',(e) =>{
-
-  if(e.key === 'Escape'&&  modalContainer.classList.contains('is-visible')){
-    hideModal();
-  }
-});
-
-// Close the modal when clicking the overlay
-modalContainer.addEventListener('click',(e) => {
-  if(e.target = modalContainer){
-    hideModal();
-  }
-});
+//
+// function hideModal(){
+//
+//   modalContainer.classList.remove('is-visible');
+// }
+//
+// document.querySelector('#show-modal').addEventListener('click',() =>{
+//   showModal(pokemon);
+// });
+//
+// // Close the modal via Esc key
+// window.addEventListener('keydown',(e) =>{
+//
+//   if(e.key === 'Escape'&&  modalContainer.classList.contains('is-visible')){
+//     hideModal();
+//   }
+// });
+//
+// // Close the modal when clicking the overlay
+// modalContainer.addEventListener('click',(e) => {
+//   if(e.target = modalContainer){
+//     hideModal();
+//   }
+// });
 
   return{
     add:add,
@@ -149,7 +155,7 @@ modalContainer.addEventListener('click',(e) => {
     loadDetails:loadDetails,
     showDetails:showDetails,
     showModal:showModal,
-    hideModal:hideModal
+    // hideModal:hideModal
 
 };
 })();
