@@ -4,8 +4,9 @@
   --color:#9ac12e;
   --h5-color:#fff;
   --font:'Noto Sans JP', sans-serif;
+  --border-color:#034e5e;
   --button-color:#007fff;
-  --border-color:#c6efdc;
+  --buttonborder-color:#c6efdc;
 }
 
 body{
@@ -21,6 +22,7 @@ margin: auto;
 }
 .list-group{
   margin: 20px;
+  margin-bottom: 50px;
 }
 .list-group-item{
   padding: 15px;
@@ -31,6 +33,12 @@ margin: auto;
   display: inline-block;
   transition: 0.2s opacity;
   color:var(--color);
-  background-color:  var(--button-color);
-  border-color: var(--border-color);
+  background-color:  var(--bg-color);
+  border:2px solid var(--border-color);
+  border-color:var(--buttonborder-color);
+}
+
+
+.btn.btn-primary{
+  padding:5px 10px;
 }
