@@ -36,9 +36,10 @@ let  pokemonRepository = (function(){
 // added button utility class
 
     button.innerText=pokemon.name;
-    button.classList.add('btn btn-primary');
-    button.setAttribute('data-bs-target','#pokemonModal','data-bs-toggle','modal');
-
+    button.classList.add('btn');
+    button.classList.add('btn-primary');
+    button.setAttribute('data-bs-target','#pokemonModal');
+    button.setAttribute('data-bs-toggle','modal');
     // appended the button to li
     listItem.appendChild(button);
     // appended the button to ul
@@ -86,8 +87,8 @@ let  pokemonRepository = (function(){
   });
   }
   function showDetails(pokemon){
-    pokemonRepository.loadDetails(pokemon).then(function(response){
-    showModal(pokemon);
+    loadDetails(pokemon).then(function(response){
+    showModal(response);
     });
   }
 
@@ -98,8 +99,8 @@ function showModal(pokemon){
   let modalBody = document.querySelector('.modal-body');
 
   // clear the existing content of the modal
-  modalBody.empty();
-  modalTitle.empty();
+  modalBody.innerHTML='';
+  modalTitle.innerHTML='';
 
 // create element for name in modal content
   let nameElement = document.createElement('h1');
@@ -111,16 +112,14 @@ function showModal(pokemon){
 
 // create element for img in modal content
   let imgElement = document.createElement('img');
-  imgElement.addClassList('modal-img');
-  imgElement.getAttribute('src',pokemon.imgUrl);
+  imgElement.classList.add('modal-img');
+  imgElement.setAttribute('src',pokemon.imgUrl);
 // create element for types in modal content
   let typeElement=document.createElement('p');
-typeElement.innerText= pokemon.types;
 
   modalTitle.appendChild(nameElement);
   modalBody.appendChild(heightElement);
   modalBody.appendChild(imgElement);
-  modalBody.appendChild(typeElement);
 
 }
 
@@ -131,8 +130,7 @@ typeElement.innerText= pokemon.types;
     loadList:loadList,
     loadDetails:loadDetails,
     showDetails:showDetails,
-    showModal:showModal,
-    // hideModal:hideModal
+    showModal:showModal
 
 };
 })();
