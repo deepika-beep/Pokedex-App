@@ -1,0 +1,66 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+
+body {
+  background-color: #f4f7fd;
+  color: #9ac12e;
+  line-height: 1.5;
+  text-align: center;
+  margin: auto;
+}
+
+ul {
+  list-style-type: none;
+}
+.list-group {
+  margin: 20px;
+  margin-bottom: 50px;
+}
+.list-group-item {
+  padding: 15px;
+  text-decoration: none;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+  display: inline-block;
+  -webkit-transition: 0.2s opacity;
+  -o-transition: 0.2s opacity;
+  transition: 0.2s opacity;
+  color: #9ac12e;
+  background-color: #f4f7fd;
+  border: 2px solid #034e5e;
+  border-color: #c6efdc;
+}
+
+.btn.btn-primary {
+  display: inline-block;
+  text-transform: uppercase;
+  width: 50%;
+  padding: 5px 10px;
+  font-weight: bolder;
+  color: #f0d437;
+}
+.btn.btn-secondary {
+  background-color: #0d6efd;
+  color: #f0d437;
+  font-weight: bolder;
+  display: inline-block;
+  width: 40%;
+  text-transform: uppercase;
+}
+.navbar.navbar-expand-sm {
+  background-color: #f0d437;
+}
+.footer {
+  background: #f0d437;
+  color: #fff;
+  padding: 10px;
+
+  font-size: 20px;
+}
