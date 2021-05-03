@@ -44,6 +44,7 @@ let pokemonRepository = (function() {
   }
 
   function loadList() {
+    // showloading();
     return fetch(apiUrl)
       .then(function(response) {
         return response.json();
@@ -65,6 +66,7 @@ let pokemonRepository = (function() {
   }
 
   function loadDetails(item) {
+    // showloading();
     // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url = item.detailsUrl;
     return fetch(url)
@@ -87,7 +89,15 @@ let pokemonRepository = (function() {
       showModal(response);
     });
   }
-
+  //Display a loader
+  // let loading = document.querySelector(".loading");
+  //
+  // function showloading() {
+  //   loading.classList.add("hidden");
+  //   setTimeout(() => {
+  //     loading.classList.remove("hidden");
+  //   }, 5000);
+  // }
   // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
   function showModal(pokemon) {
     let modalTitle = document.querySelector(".modal-title");
