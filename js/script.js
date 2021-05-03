@@ -91,16 +91,17 @@ let pokemonRepository = (function() {
   }
   //Display a loader
 
-  let loading = document.querySelector(".loading");
+  let loading = document.querySelector("#loading");
 
-  function showloading() {
-    loading.classList.add("hidden");
+  function showLoading() {
+    loading.classList.add("display");
     setTimeout(() => {
-      loading.classList.remove("hidden");
+      loading.classList.remove("display");
     }, 5000);
   }
-
-  // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
+  function hideLoading() {
+    loading.classList.remove("display");
+  } // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
   function showModal(pokemon) {
     let modalTitle = document.querySelector(".modal-title");
     // let modalHeader = document.querySelector('.modal-header');
