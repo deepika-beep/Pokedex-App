@@ -5,10 +5,11 @@ let pokemonRepository = (function() {
     "object" == typeof e && "name" in e ? t.push(e) : prompt("data invalid");
   }
   function i(t) {
+    a();
     let n = t.detailsUrl;
     return fetch(n)
       .then(function(t) {
-        return t.json();
+        return c(), t.json();
       })
       .then(function(e) {
         return (
@@ -19,15 +20,25 @@ let pokemonRepository = (function() {
         );
       })
       .catch(function() {
-        console.error(e);
+        c(), console.error(e);
       });
   }
   function l(t) {
     i(t).then(function(t) {
-      r(t);
+      s(t);
     });
   }
-  function r(t) {
+  let r = document.querySelector("#loading");
+  function a() {
+    r.classList.add("display"),
+      setTimeout(() => {
+        r.classList.remove("display");
+      }, 5e3);
+  }
+  function c() {
+    r.classList.remove("display");
+  }
+  function s(t) {
     let e = document.querySelector(".modal-title"),
       n = document.querySelector(".modal-body");
     (n.innerHTML = ""), (e.innerHTML = "");
@@ -64,23 +75,27 @@ let pokemonRepository = (function() {
         });
     },
     loadList: function() {
-      return fetch(n)
-        .then(function(t) {
-          return t.json();
-        })
-        .then(function(t) {
-          t.results.forEach(function(t) {
-            let e = { name: t.name, detailsUrl: t.url };
-            o(e), console.log(e);
-          });
-        })
-        .catch(function() {
-          console.error(e);
-        });
+      return (
+        a(),
+        fetch(n)
+          .then(function(t) {
+            return t.json();
+          })
+          .then(function(t) {
+            c(),
+              t.results.forEach(function(t) {
+                let e = { name: t.name, detailsUrl: t.url };
+                o(e), console.log(e);
+              });
+          })
+          .catch(function() {
+            c(), console.error(e);
+          })
+      );
     },
     loadDetails: i,
     showDetails: l,
-    showModal: r
+    showModal: s
   };
 })();
 pokemonRepository.loadList().then(function() {
