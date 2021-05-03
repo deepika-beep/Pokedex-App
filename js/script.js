@@ -3,6 +3,7 @@
 let pokemonRepository = (function() {
   // let modalContainer = document.querySelector('#modal-container');
   let pokemonList = [];
+
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/";
 
   // created add function to check if the typeof parameter is an object
@@ -18,7 +19,7 @@ let pokemonRepository = (function() {
   function getAll() {
     return pokemonList;
   }
-
+  // create function for push items to the list
   function addListItem(pokemon) {
     let pokemonList = document.querySelector(".list-group");
     let listItem = document.createElement("li");
@@ -42,8 +43,9 @@ let pokemonRepository = (function() {
       showDetails(pokemon);
     });
   }
-
+  // fetch pokemon list  from  API
   function loadList() {
+    showloading();
     return fetch(apiUrl)
       .then(function(response) {
         return response.json();
@@ -65,7 +67,7 @@ let pokemonRepository = (function() {
   }
 
   function loadDetails(item) {
-    // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
+    showloading(); // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url = item.detailsUrl;
     return fetch(url)
       .then(function(response) {
@@ -86,6 +88,16 @@ let pokemonRepository = (function() {
     loadDetails(pokemon).then(function(response) {
       showModal(response);
     });
+  }
+  //Display a loader
+
+  let loading = document.querySelector(".loading");
+
+  function showloading() {
+    loading.classList.add("hidden");
+    setTimeout(() => {
+      loading.classList.remove("hidden");
+    }, 5000);
   }
 
   // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
