@@ -1,44 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap');
-:root{
-  --bg-color:#f4f7fd;
-  --color:#9ac12e;
-  --h5-color:#fff;
-  --font:'Noto Sans JP', sans-serif;
-  --border-color:#034e5e;
-  --button-color:#007fff;
-  --buttonborder-color:#c6efdc;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap");
+:root {
+  --bg-color: #f4f7fd;
+  --color: #9ac12e;
+  --h5-color: #fff;
+  --font: "Noto Sans JP", sans-serif;
+  --border-color: #034e5e;
+  --button-color: #007fff;
+  --buttonborder-color: #c6efdc;
 }
 
-body{
-background-color:  var(--bg-color);
-color:  var(--color);
-line-height: 1.5;
-text-align:center;
-margin: auto;
-  }
+body {
+  background-color: var(--bg-color);
+  color: var(--color);
+  line-height: 1.5;
+  text-align: center;
+  margin: auto;
+}
 
-  ul{
+ul {
   list-style-type: none;
 }
-.list-group{
+.list-group {
   margin: 20px;
   margin-bottom: 50px;
 }
-.list-group-item{
+.list-group-item {
   padding: 15px;
   text-decoration: none;
-  text-align:center;
-  width:100%;
+  text-align: center;
+  width: 100%;
   cursor: pointer;
   display: inline-block;
   transition: 0.2s opacity;
-  color:var(--color);
-  background-color:  var(--bg-color);
-  border:2px solid var(--border-color);
-  border-color:var(--buttonborder-color);
+  color: var(--color);
+  background-color: var(--bg-color);
+  border: 2px solid var(--border-color);
+  border-color: var(--buttonborder-color);
 }
-
-
-.btn.btn-primary{
-  padding:5px 10px;
+.btn.btn-primary {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 15px;
+}
+.btn.btn-secondary {
+  background-color: #0d6efd;
+  color: #f0d437;
+  font-weight: bolder;
+  display: inline-block;
+  width: 40%;
+  text-transform: uppercase;
+}
+.navbar.navbar-expand-sm {
+  background-color: #f0d437;
+}
+.footer {
+  background: #f0d437;
+  color: #fff;
+  padding: 10px;
+  font-size: 20px;
+}
+#loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+#loading.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+#loader > img {
+  width: 100px;
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
 }
