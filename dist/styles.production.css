@@ -53,3 +53,25 @@ ul {
   padding: 10px;
   font-size: 20px;
 }
+#loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+#loading.hidden {
+  animation: fadeOut 1s;
+  animation-fill-mode: forwards;
+}
+#loader > img {
+  width: 100px;
+}
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
