@@ -44,12 +44,13 @@ let pokemonRepository = (function() {
   }
 
   function loadList() {
-    // showloading();
+    showLoading();
     return fetch(apiUrl)
       .then(function(response) {
         return response.json();
       })
       .then(function(json) {
+        hideLoading();
         json.results.forEach(function(item) {
           let pokemon = {
             name: item.name,
@@ -61,16 +62,18 @@ let pokemonRepository = (function() {
         });
       })
       .catch(function() {
+        hideLoading();
         console.error(e);
       });
   }
 
   function loadDetails(item) {
-    // showloading();
+    showLoading();
     // loadDetails() should GET the Pokémon details using the URL from the Pokémon object in the parameter.
     let url = item.detailsUrl;
     return fetch(url)
       .then(function(response) {
+        hideLoading();
         return response.json();
         // Everything in json are considered as details
       })
@@ -81,6 +84,7 @@ let pokemonRepository = (function() {
         return item;
       })
       .catch(function() {
+        hideLoading();
         console.error(e);
       });
   }
@@ -89,15 +93,19 @@ let pokemonRepository = (function() {
       showModal(response);
     });
   }
-  //Display a loader
-  // let loading = document.querySelector(".loading");
-  //
-  // function showloading() {
-  //   loading.classList.add("hidden");
-  //   setTimeout(() => {
-  //     loading.classList.remove("hidden");
-  //   }, 5000);
-  // }
+  // Display a loader
+  let loading = document.querySelector("#loading");
+
+  function showLoading() {
+    loading.classList.add("display");
+    setTimeout(() => {
+      loading.classList.remove("display");
+    }, 5000);
+  }
+  function hideLoading() {
+    loading.classList.remove("display");
+  }
+
   // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
   function showModal(pokemon) {
     let modalTitle = document.querySelector(".modal-title");
