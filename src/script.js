@@ -44,13 +44,13 @@ let pokemonRepository = (function() {
   }
 
   function loadList() {
-    showLoading();
+    // showLoading();
     return fetch(apiUrl)
       .then(function(response) {
         return response.json();
       })
       .then(function(json) {
-        hideLoading();
+        // hideLoading();
         json.results.forEach(function(item) {
           let pokemon = {
             name: item.name,
@@ -73,18 +73,17 @@ let pokemonRepository = (function() {
     let url = item.detailsUrl;
     return fetch(url)
       .then(function(response) {
-        hideLoading();
         return response.json();
         // Everything in json are considered as details
       })
       .then(function(details) {
+        hideLoading();
         item.height = details.height;
         item.types = details.types;
         item.imgUrl = details.sprites.front_shiny;
         return item;
       })
       .catch(function() {
-        hideLoading();
         console.error(e);
       });
   }
@@ -95,15 +94,11 @@ let pokemonRepository = (function() {
   }
   // Display a loader
   let loading = document.querySelector("#loading");
-
   function showLoading() {
-    loading.classList.add("display");
-    setTimeout(() => {
-      loading.classList.remove("display");
-    }, 5000);
+    loading.classList.remove("display");
   }
   function hideLoading() {
-    loading.classList.remove("display");
+    loading.classList.add("display");
   }
 
   // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
