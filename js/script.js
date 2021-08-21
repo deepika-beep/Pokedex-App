@@ -95,13 +95,11 @@ let pokemonRepository = (function() {
 
   function showLoading() {
     loading.classList.add("display");
-    setTimeout(() => {
-      loading.classList.remove("display");
-    }, 5000);
   }
   function hideLoading() {
     loading.classList.remove("display");
-  } // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
+  }
+  // Display a modal with the Pokémon’s name, its height, and an image of the Pokémon
   function showModal(pokemon) {
     let modalTitle = document.querySelector(".modal-title");
     // let modalHeader = document.querySelector('.modal-header');
